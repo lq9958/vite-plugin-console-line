@@ -3,6 +3,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 import { ref } from "vue";
 const message = ref("this is a test message.");
 console.log(message.value);
+console.log("this is a test message.");
 </script>
 
 <template>

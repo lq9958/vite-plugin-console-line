@@ -1,8 +1,14 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import consoleLine from './plugin/index.js'
+import consoleLine from '../src/index'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue(), consoleLine({ exclude: ['node_modules'] })],
+const port = 9528
+const viteConfig = defineConfig({
+  server: {
+    port: port,
+    open: true,
+  },
+  plugins: [consoleLine({ exclude: ['node_modules'], port: 9528 }), vue(),],
 })
+export default viteConfig
