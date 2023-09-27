@@ -1,20 +1,19 @@
 import path from 'path';
-import {
-  generateLogTitle,
-  generateLogTitleStyle,
-  generateFileLocation,
-  generateFileLocationStyle,
-  generateLine,
-  generateLineStyle,
-  generateNewLine,
-  generateNewLineStyle
-} from './utils'
+import { composeConsoleLog } from './utils'
 
-export default function consoleLine(options) {
+/**
+ * if you want to jump to the console line, you need to set the port
+ * 
+ * @param {object} options 
+ * @param {string[]} options.exclude - exclude file path
+ * @param {number|string} options.port - server port
+ * @returns {object}
+ */
+function consoleLine(options) {
   return {
     name: 'vite-plugin-console-line',
     transform(code, id) {
-      const { exclude } = options;
+      const { exclude, port } = options;
       const projectDir = path.join(process.cwd());
       if (exclude.length) {
         for (let i = 0; i < exclude.length; i += 1) {
@@ -32,27 +31,22 @@ export default function consoleLine(options) {
         let resultCode = '';
         codeList.forEach((token) => {
           if (token.search(consoleReg) >= 0) {
-            const fileDir = id.replace(projectDir.replace(/\\/g, '/'), '');
+            const fileRelativePath = id.replace(projectDir.replace(/\\/g, '/'), '');
             const prefix = token.slice(
               token.search(consoleReg),
               12 + token.search(consoleReg)
             );
             const suffix = token.slice(12 + token.search(consoleReg));
-            const ret = `${prefix
-              + generateLogTitle()
-              + generateFileLocation(fileDir)
-              + generateLine(lineCount)
-              + generateNewLine()
-              + ','
-              + generateLogTitleStyle()
-              + ','
-              + generateFileLocationStyle()
-              + ','
-              + generateLineStyle()
-              + ','
-              + generateNewLineStyle()
-              + ','
-              + suffix}`;
+            const ret = composeConsoleLog({
+              prefix,
+              suffix,
+              fileRelativePath,
+              fileAbsolutePath: id,
+              lineCount,
+              endCloumn: token.length + 1,
+              port: port,
+              jump: !!port,
+            });
             resultCode += `${ret}\n`;
           } else {
             resultCode += `${token}\n`;
@@ -65,3 +59,5 @@ export default function consoleLine(options) {
     }
   };
 }
+
+export default consoleLine
