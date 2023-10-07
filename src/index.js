@@ -1,9 +1,8 @@
-import path from 'path';
+import path from 'path-browserify';
 import { composeConsoleLog } from './utils'
 
-/**
- * if you want to jump to the console line, you need to set the port
- * 
+/** 
+ * if you want to jump to the console line, you need to set the port.
  * @param {object} options 
  * @param {string[]} options.exclude - exclude file path
  * @param {number|string} options.port - server port

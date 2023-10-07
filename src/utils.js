@@ -94,11 +94,10 @@ export function generateNewLineStyle() {
 }
 
 /**
- * 
  * @param {Object} components 
  * @param {string} components.prefix
  * @param {string} components.suffix
- * @param {string} components.fileRelativePath
+ * @param {string} components.fileRelativePath 
  * @param {string} components.fileAbsolutePath
  * @param {number} components.lineCount
  * @param {number} components.endCloumn
