@@ -1,8 +1,9 @@
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
 import { ref } from "vue";
-const message = ref("this is a test message.");
+const message = ref("这是一段测试文本。");
 console.log(message.value);
+console.log(message);
 console.log("this is a test message.");
 </script>
 

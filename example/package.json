@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "path-browserify": "^1.0.1",
     "vue": "^3.3.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-console-line": "^0.4.0"
   }
 }
