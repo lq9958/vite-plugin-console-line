@@ -29,3 +29,7 @@ When debugging in your code, you can view the file location and line numbers for
 
 Sometimes you may only need to display the file location and line number for **console.log()**. In that case, you can omit the **port** field when passing the parameters.
 ![consolo.log()](./assets/image-simple.png)
+
+# About **Open In Editor**
+
+`open in editor` feature is depends on [launch-editor](https://github.com/yyx990803/launch-editor).
